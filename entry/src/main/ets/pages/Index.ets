@@ -1,23 +1,26 @@
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World';
+  @State focusedColor: Color = Color.Red
+  normalColor: Color = Color.Green
 
   build() {
-    RelativeContainer() {
-      Text(this.message)
-        .id('HelloWorld')
-        .fontSize($r('app.float.page_text_font_size'))
-        .fontWeight(FontWeight.Bold)
-        .alignRules({
-          center: { anchor: '__container__', align: VerticalAlign.Center },
-          middle: { anchor: '__container__', align: HorizontalAlign.Center }
+    Column() {
+      Button('clickMe')
+        .height(100)
+        .width(100)
+        .stateStyles({
+          normal: {
+            .backgroundColor(this.normalColor)
+          },
+          focused: {
+            .backgroundColor(this.focusedColor)
+          }
         })
         .onClick(() => {
-          this.message = 'Welcome';
+          this.focusedColor = Color.Pink
         })
+        .margin('30%')
     }
-    .height('100%')
-    .width('100%')
   }
 }
